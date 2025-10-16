@@ -36,40 +36,50 @@ def retrieveRegion(data):
     print (regionSel)
     dict = {}
     for x in range(len(data)):
-        print (x)
+        # print (x)
         if (data[x][6]) == regionSel:
-            dict[(regionSel, x)] = [(data[x][3]), (data[x][4]), (data[x][5]), (data[x][6]), (data[x][7])]
+            dict[x] = [regionSel, (data[x][3]), (data[x][4]), (data[x][5]), (data[x][7]), f"Product: {data[x][8]}", (data[x][9])]
+    # max_key = max(dict.keys())
+    # print("max key:" , max_key)
     return dict
             
 
 
         
 
-def revPerRegion(region, data):
+def revPerRegion(data):
     # print (data)
     totalRev = 0
     quant = 0
-    for x in data:
-        if x[6] == region:
-            totalRev += float(x[-1])
-            quant += 1
-            # print (totalRev)
+    for x in data.values():
+        totalRev += float(x[-1])
+        quant += 1
+        # print (totalRev)
     return totalRev / quant
 
 def revPerCategory(category, data):
     totalRev = 0
     quant = 0
-    for x in data:
-        if x[7] == category:
+    for x in data.values():
             totalRev += float(x[-1])
             quant += 1
     return totalRev / quant
 
-            
-raw = starter()
-region = (retrieveRegion(raw))
-print region[924]
-# print(revPerRegion("East", data))
-# print(revPerCategory("Technology", data))
 
-    
+raw = starter()
+regionD = retrieveRegion(raw)
+avgRegionRev = revPerRegion(regionD)
+
+ 
+
+# ['West', 'Anaheim', 'California', '92804', 'West', 'Office Supplies']
+
+# def main(regSelection):                
+#     raw = starter()
+#     print 
+#     regionD = (retrieveRegion(raw))
+#     revPerRegion(regSelection, regionD)
+    #
+    # print(revPerCategory(, data))
+#
+# main(regionSelection 
